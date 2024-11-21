@@ -14,7 +14,8 @@ class Question(models.Model):
         return self.question_text
 
     def was_published_recently(self):
-        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+        now = timezone.now()
+        return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
 # 选项模型 包含两个字段：1.选项描述，2.投票数
 class Choice(models.Model):
